@@ -11,6 +11,9 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
+# Create tables automatically when the app module is imported/running in tests
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
